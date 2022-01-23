@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
         <title>Employee Payroll form</title>
         <link rel="stylesheet" href="../css/form.css">
+        <script type="text/javascript" src="../js/FormValidation.js"></script>
     </head>
     <body>
         <!--UC1 - Employee Payroll App With logo -->
@@ -80,6 +81,7 @@
                     <label class="label text" for="salary">Choose your salary</label>
                     <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
                     <output class="salary-output text" for="salary">400000</output>
+                    <error-output class="salary-error" for="text"></error-output>
                 </div>
                 <!-- UC5 Employee Payroll Form with start date -->
                 <div class="row-content">

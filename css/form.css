@@ -123,7 +123,7 @@ select{
     display: flex;
     margin-bottom: 10px;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .button{
     font-size: 20px;
@@ -152,15 +152,19 @@ select{
 }
 
 /*Adding Media Quaries */
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 960px){
     .cancelButton{
         margin-left: 0px;
     }
+    .form{
+        width: 85%;
+        padding: 44px 20px;
+    }
+    .profile-label{
+        margin-right: 0px;
+    }
 }
-.form{
-    width: 85%;
-    padding: 44px 20px;
-}
+
 @media only screen and (max-width: 600px){
     .form{
         margin-top: 10px;
@@ -192,4 +196,32 @@ select{
         flex-direction: column-reverse;
         align-items: flex-start;
     }
+}
+
+a.button:hover{
+    background-color: gray;
+    color: white;
+}
+.submitButton:hover{
+    background-color: #82a70c;
+    color: white;
+}
+.resetButton:hover{
+    background: gray;
+    color: white;
+}
+@media only screen and (max-width: 320px){
+    .label{
+        min-width: 50px;
+    }
+}
+.profile-label{
+    margin-right: 20px;
+}
+
+.text-error{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: red;
 }
