@@ -1,14 +1,15 @@
+//UC-9
 class EmployeePayrollData{
 
     //Getter and setter method
 
-    // get id(){
-    //     return this._id;
-    // }
+    get id(){
+        return this._id;
+    }
 
-    // set id(id){
-    //     this._id = id;
-    // }
+    set id(id){
+        this._id = id;
+    }
 
     get name(){
         return this._name;
@@ -60,7 +61,7 @@ class EmployeePayrollData{
     set notes(notes){
         this._notes = notes;
     }
-
+    //UC-10
     get startDate(){
         return this._startDate;
     }

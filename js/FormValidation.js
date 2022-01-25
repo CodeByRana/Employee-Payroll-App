@@ -7,11 +7,12 @@ function validateName(){
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error')
     name.addEventListener('input',function(){
-        const nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
-        if(nameRegex.test(name.value)){         
-            textError.textContent = "";
-        }else{
-            textError.textContent = "Name is invalid";
+        try{
+            let empData = new EmployeePayrollData();
+            empData.name = name.value;
+            textError.textContent  = "";
+        }catch(e){
+            textError.textContent = e;
         }
     });
 }
@@ -24,12 +25,3 @@ function validateSalary(){
         output.textContent= salary.value;
     });
 }
-
-const save = () =>{
-    try{
-      let employeePayrollData = EmployeePayrollData();
-    }catch(e){
-        return;
-    }
-}
-const 
