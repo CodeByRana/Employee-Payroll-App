@@ -24,12 +24,3 @@ function validateSalary(){
         output.textContent= salary.value;
     });
 }
-
-const save = () =>{
-    try{
-      let employeePayrollData = EmployeePayrollData();
-    }catch(e){
-        return;
-    }
-}
-const 
