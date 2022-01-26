@@ -38,6 +38,7 @@ const createEmployeePayroll = () =>{
     let employeePayrollData = new EmployeePayrollData();
     try {
         employeePayrollData.name = getInputValueById('#name');
+        setTextValue('.date-error', "");
     } catch (e) {
         setTextValue('.text-error',e);
     }
