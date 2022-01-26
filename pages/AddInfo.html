@@ -13,7 +13,7 @@
     <body>
         <!--UC1 - Employee Payroll App With logo -->
         <header class="header-content header">
-            <div class="logo-content" onclick="location.href='./EmployeePayroll.html'">
+            <div class="logo-content" onclick="location.href='./home.html'">
                 <img src="../assets/images//logo.png" alt="logo">
                 <div>
                     <span class="emp-text">EMPLOYEE</span><br>
@@ -24,7 +24,7 @@
 
         <!--UC2 - Employee Payroll Form with Header and Name -->
         <div class="form-content">
-            <form class="form" action="#" onsubmit="save(event);return false" onreset="resetForm()">
+            <form class="form" action="#" onsubmit="save();return false" onreset="resetForm()">
                 <div class="form-head">Employee Payroll form</div>
                 <div class="row-content">
                     <label class="label text" for="name">Name</label>
@@ -153,6 +153,7 @@
                             <option value="2011">2011</option>
                             <option value="2010">2010</option>
                         </select>
+                        <error-output class="date-error" for="error"></error-output>
                     </div>
                 </div>
                 <!--UC6 -Ability to add Notes and Button -->

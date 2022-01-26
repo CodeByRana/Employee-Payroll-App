@@ -25,3 +25,38 @@ function validateSalary(){
         output.textContent= salary.value;
     });
 }
+
+//On Save Create Employee Payroll Data Object 
+const save = () =>{
+
+    let employeePayrollData = createEmployeePayroll();
+
+}
+
+const createEmployeePayroll = () =>{
+    
+    let employeePayrollData = new EmployeePayrollData();
+    try {
+        employeePayrollData.name = getInputValueById('#name');
+    } catch (e) {
+        setTextValue('.text-error',e);
+    }
+
+    try {
+        let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
+        employeePayrollData.startDate = new Date(Date.parse(date));
+        setTextValue('.date-error', "");
+    } catch (e) {
+        setTextValue('.date-error', e);
+    }
+    alert(JSON.stringify(employeePayrollData));
+}
+
+const getInputValueById = (id) => {
+    return value = document.querySelector(id).value;
+}
+
+const setTextValue = (id, message) => {
+    const textError = document.querySelector(id);
+    textError.textContent = message;
+}
