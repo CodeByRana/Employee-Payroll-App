@@ -73,8 +73,8 @@ set startDate(startDate) {
         throw "Start date is a future date";
     }
 
-    var diff = Math.abs(currentDate.getTime - startDate.getTime());
-    if (diff / (1000 * 60 * 24) > 30) {
+    var diff = Math.abs(currentDate.getTime() - startDate.getTime());
+    if (diff / (1000 * 60 * 60 * 24) > 30) {
         throw "start date is beyond 30 days";
     }
     this._startDate = startDate;
