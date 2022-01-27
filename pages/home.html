@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compitable" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
-        <title>Employee Payroll App | Home</title>
-        <link rel="stylesheet" href="../css/home.css">
-    </head>
-    <body>
-        <!--UC1 - Employee Payroll App With logo -->
-        <header class="header-content header">
-            <div class="logo-content" onclick="location.href='./EmployeePayroll.html'">
-                <img src="../assets/images//logo.png" alt="logo">
-                <div>
-                    <span class="emp-text">EMPLOYEE</span><br>
-                    <span class="emp-text emp-payroll">PAYROLL</span>
-                </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compitable" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Employee Payroll App | Home</title>
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+
+<body>
+    <!--UC1 - Employee Payroll App With logo -->
+    <!-- Header Start -->
+    <header class="header-content header">
+        <div class="logo-content" onclick="location.href='./AddInfo.html'">
+            <img src="../assets/images//logo.png" alt="logo">
+            <div>
+                <span class="emp-text">EMPLOYEE</span><br>
+                <span class="emp-text emp-payroll">PAYROLL</span>
             </div>
-        </header>
-        
-        <div class="form-content">
-            <h1>Home Page</h1>
         </div>
-    </body>
+    </header>
+    <!-- End Header -->
+
+    <!-- UC-2 Employee Payroll Form with header and name -->
+    <!--Start Main Content-->
+    <div class="main-content">
+        <div class="header-content sub-main-content">
+            <div class="emp-detail-text">
+                Employee Details<div class="emp-count">0</div>
+            </div>
+            <div onclick="location.href='.AddInfo.html'" class="add-button">
+                <div class="plus-icon">
+                    <img src="../assets/icons/add-24px.svg" alt="Add User Logo">
+                </div>
+                <div>Add User</div>
+            </div>
+        </div>    
+    </div>
+    <!--End Main Content-->
+</body>
+
 </html>
