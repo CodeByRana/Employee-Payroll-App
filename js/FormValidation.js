@@ -83,7 +83,7 @@ const getSelectValue = (propertyValue) => {
 
 //Data store in local storage
 const createAndUpadteLocalStorage = (empData) => {
-    let dataList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    let dataList = JSON.parse(localStorage.getItem("employeePayrollList"));
     if (dataList != undefined) {
         dataList.push(empData);
     } else {

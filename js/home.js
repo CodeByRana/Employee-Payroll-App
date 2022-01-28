@@ -1,10 +1,17 @@
 window.addEventListener('DOMContentLoaded', () => {
+    empPayrollList = getEmployeePayrollDataFromStorage();
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHtml();
+    localStorage.removeItem('editEmp');
 });
+
+const getEmployeePayrollDataFromStorage = () =>{
+  return localStorage.getItem('employeePayrollList') ? JSON.parse(localStorage.getItem('employeePayrollList')) : [];
+}
 
 //Template literal ES6 feature
 const createInnerHtml = () => {
-  let empPayrollList = createEmployeePayrollJSON();
+  //let empPayrollList = createEmployeePayrollJSON();
   console.log(empPayrollList);
     const headerHtml = `
     <tr>
@@ -19,7 +26,7 @@ const createInnerHtml = () => {
 let innerHtml = `${headerHtml}`;
 
 for (const empPayrollData of empPayrollList){
-     innerHtml = `${headerHtml}
+     innerHtml = `${innerHtml}
                 <tr>
                     <td>
                         <img class="profile" alt="profile-images" src="${empPayrollData
@@ -31,8 +38,8 @@ for (const empPayrollData of empPayrollList){
                     <td>${empPayrollData._salary}</td>
                     <td>${empPayrollData._startDate}</td>
                     <td>
-                        <img name="${empPayrollData._id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-                        <img name="${empPayrollData._id}" onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">
+                        <img id="${empPayrollData._id}" onClick=remove(this) alt="delete" src="../assets/icons/delete-black-18dp.svg">
+                        <img id="${empPayrollData._id}" onClick=update(this) alt="edit" src="../assets/icons/create-black-18dp.svg">
                     </td>
                 </tr>
     `;
@@ -58,26 +65,26 @@ const createEmployeePayrollJSON = () => {
           {
             "_id": 2,
             "_name": "Bill",
-            "_gender": "male",
+            "_gender": "female",
             "_department": [
               "Engineering"
             ],
             "_salary": "500000",
             "_startDate": "29 Oct 2019",
             "_note": "Terrific Engineer",
-            "_profilePic": "../assets/profile-images/Ellipse -1.png"
+            "_profilePic": "../assets/profile-images/Ellipse -4.png"
           },
           {
             "_id": 3,
             "_name": "Keerthi",
-            "_gender": "female",
+            "_gender": "male",
             "_department": [
               "Sales"
             ],
             "_salary": "400000",
             "_startDate": "29 Oct 2019",
             "_note": "",
-            "_profilePic": "../assets/profile-images/Ellipse -1.png"
+            "_profilePic": "../assets/profile-images/Ellipse -2.png"
           },
           {
             "_id": 4, 
