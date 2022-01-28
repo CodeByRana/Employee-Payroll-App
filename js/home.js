@@ -12,8 +12,7 @@ const getEmployeePayrollDataFromStorage = () =>{
 
 //Template literal ES6 feature
 const createInnerHtml = () => {
-  //let empPayrollList = createEmployeePayrollJSON();
- // console.log(empPayrollList);
+
   const headerHtml = `
     <tr>
     <th></th>
@@ -27,7 +26,7 @@ const createInnerHtml = () => {
   let innerHtml = `${headerHtml}`;
 
   for (const empPayrollData of empPayrollList) {
-    innerHtml = `${headerHtml}
+    innerHtml = `${innerHtml}
                 <tr>
                     <td>
                         <img class="profile" alt="profile-images" src="${empPayrollData

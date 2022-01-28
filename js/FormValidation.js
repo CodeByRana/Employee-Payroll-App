@@ -58,6 +58,7 @@ const createEmployeePayroll = () => {
     employeePayrollData.notes = getInputValueById('#notes');
     employeePayrollData.id = new Date().getTime() + 1;
     alert(employeePayrollData.toString());
+    console.log(employeePayrollData);
     return employeePayrollData;
 }
 
@@ -83,8 +84,10 @@ const getSelectValue = (propertyValue) => {
 
 //Data store in local storage
 const createAndUpadteLocalStorage = (empData) => {
-    let dataList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    if (dataList != undefined) {
+    let dataList = JSON.parse(localStorage.getItem("employeePayrollList"));
+    console.log("Data from local stroage" );
+    console.log(dataList);
+    if (dataList != null) {
         dataList.push(empData);
     } else {
         dataList = [empData];
