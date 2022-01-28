@@ -1,9 +1,11 @@
 window.addEventListener('DOMContentLoaded', () => {
-    createInnerHTML();
+    createInnerHtml();
 });
 
 //Template literal ES6 feature
-const createInnerHTML = () => {
+const createInnerHtml = () => {
+  let empPayrollList = createEmployeePayrollJSON();
+  console.log(empPayrollList);
     const headerHtml = `
     <tr>
     <th></th>
@@ -14,9 +16,10 @@ const createInnerHTML = () => {
     <th>Start Date</th>
     <th>Actions</th>
 </tr>`;
-let empPayrollData = createEmployeePayrollJSON()[3];
-console.log(empPayrollData);
-    const innerHtml = `${headerHtml}
+let innerHtml = `${headerHtml}`;
+
+for (const empPayrollData of empPayrollList){
+     innerHtml = `${headerHtml}
                 <tr>
                     <td>
                         <img class="profile" alt="profile-images" src="${empPayrollData
@@ -33,13 +36,14 @@ console.log(empPayrollData);
                     </td>
                 </tr>
     `;
+    }
     document.querySelector('#display').innerHTML = innerHtml;
 }
 
 const createEmployeePayrollJSON = () => {
     let empPayrollListLocal = [
         {
-            "_id": new Date().getTime(),
+            "_id": 1,
             "_name": "Mark",
             "_gender": "male",
             "_department": [
