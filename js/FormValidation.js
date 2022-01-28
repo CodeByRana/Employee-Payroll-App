@@ -85,41 +85,41 @@ const getSelectValue = (propertyValue) => {
 //Data store in local storage
 const createAndUpadteLocalStorage = (empData) => {
     let dataList = JSON.parse(localStorage.getItem("employeePayrollList"));
-    console.log("Data from local stroage" );
+    console.log("Data from local stroage");
     console.log(dataList);
     if (dataList != null) {
-    if (dataList != undefined) {
-        dataList.push(empData);
-    } else {
-        dataList = [empData];
+        if (dataList != undefined) {
+            dataList.push(empData);
+        } else {
+            dataList = [empData];
+        }
+        localStorage.setItem('employeePayrollList', JSON.stringify(dataList));
+        alert("Data stored with name " + empData.name);
     }
-    localStorage.setItem('employeePayrollList',JSON.stringify(dataList));
-    alert("Data stored with name "+empData.name);
-}
 
-/** Reset employee payroll form */
+    /** Reset employee payroll form */
 
-const resetForm = () => {
-    setTextValue('#name', '');
-    unsetSelectedValues('[name=profile]');
-    unsetSelectedValues('[name=gender]');
-    unsetSelectedValues('[name=department]');
-    setValue('#salary','');
-    setValue('#notes','');
-    setValue('#day','1');
-    setValue('#month','January');
-    setValue('#year','2021');
-}
+    const resetForm = () => {
+        setTextValue('#name', '');
+        unsetSelectedValues('[name=profile]');
+        unsetSelectedValues('[name=gender]');
+        unsetSelectedValues('[name=department]');
+        setValue('#salary', '');
+        setValue('#notes', '');
+        setValue('#day', '1');
+        setValue('#month', 'January');
+        setValue('#year', '2021');
+    }
 
-const unsetSelectedValues =(propertyValue) =>{
-    let allItems = document.querySelectorAll(propertyValue);
-    allItems.forEach (item =>{
-        item.checked = false;
-    });
-}
+    const unsetSelectedValues = (propertyValue) => {
+        let allItems = document.querySelectorAll(propertyValue);
+        allItems.forEach(item => {
+            item.checked = false;
+        });
+    }
 
-const setValue = (id, value) =>{
-    const element = document.querySelector(id);
-    element.value = value;
+    const setValue = (id, value) => {
+        const element = document.querySelector(id);
+        element.value = value;
     }
 }
