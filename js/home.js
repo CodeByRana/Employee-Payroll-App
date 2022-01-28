@@ -1,105 +1,125 @@
 window.addEventListener('DOMContentLoaded', () => {
-    createInnerHtml();
+    validateName();
+    validateSalary();
 });
-
-//Template literal ES6 feature
-const createInnerHtml = () => {
-  let empPayrollList = createEmployeePayrollJSON();
-  console.log(empPayrollList);
-    const headerHtml = `
-    <tr>
-    <th></th>
-    <th>Name</th>
-    <th>Gender</th>
-    <th>Department</th>
-    <th>Salary</th>
-    <th>Start Date</th>
-    <th>Actions</th>
-</tr>`;
-let innerHtml = `${headerHtml}`;
-
-for (const empPayrollData of empPayrollList){
-     innerHtml = `${innerHtml}
-                <tr>
-                    <td>
-                        <img class="profile" alt="profile-images" src="${empPayrollData
-                        ._profilePic}">
-                    </td>
-                    <td>${empPayrollData._name}</td>
-                    <td>${empPayrollData._gender}</td>
-                    <td>${getDeptHtml(empPayrollData._department)}</td>
-                    <td>${empPayrollData._salary}</td>
-                    <td>${empPayrollData._startDate}</td>
-                    <td>
-                        <img name="${empPayrollData._id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-                        <img name="${empPayrollData._id}" onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">
-                    </td>
-                </tr>
-    `;
-    }
-    document.querySelector('#display').innerHTML = innerHtml;
+//validation for name
+function validateName() {
+    const name = document.querySelector('#name');
+    const textError = document.querySelector('.text-error')
+    name.addEventListener('input', function () {
+        try {
+            let empData = new EmployeePayrollData();
+            empData.name = name.value;
+            textError.textContent = "";
+        } catch (e) {
+            textError.textContent = e;
+        }
+    });
+}
+//validation for salary range
+function validateSalary() {
+    const salary = document.querySelector("#salary");
+    const output = document.querySelector('.salary-output');
+    output.textContent = salary.value;
+    salary.addEventListener('input', function () {
+        output.textContent = salary.value;
+    });
 }
 
-const createEmployeePayrollJSON = () => {
-    let empPayrollListLocal = [
-        {
-            "_id": 1,
-            "_name": "Mark",
-            "_gender": "male",
-            "_department": [
-              "Finance",
-              "Engineer"
-            ],
-            "_salary": "500000",
-            "_startDate": '28 jan 2022',
-            "_note": "All In One",
-            "_profilePic": "../assets/profile-images/Ellipse -3.png"
-          },
-          {
-            "_id": 2,
-            "_name": "Bill",
-            "_gender": "male",
-            "_department": [
-              "Engineering"
-            ],
-            "_salary": "500000",
-            "_startDate": "29 Oct 2019",
-            "_note": "Terrific Engineer",
-            "_profilePic": "../assets/profile-images/Ellipse -1.png"
-          },
-          {
-            "_id": 3,
-            "_name": "Keerthi",
-            "_gender": "female",
-            "_department": [
-              "Sales"
-            ],
-            "_salary": "400000",
-            "_startDate": "29 Oct 2019",
-            "_note": "",
-            "_profilePic": "../assets/profile-images/Ellipse -1.png"
-          },
-          {
-            "_id": 4, 
-            "_name": "Kavya",
-            "_profilePic": "../assets/profile-images/Ellipse -1.png",
-            "_gender": "female",
-            "_department": [
-              "Finance",
-              "Engineer"
-            ],
-            "_salary": "428100",
-            "_note": "                ",
-            "_startDate": '27 oct 2022'
-          }
-    ];
-    return empPayrollListLocal;
+//UC11 - On Save Create Employee Payroll Data Object 
+const save = () => {
+
+    let employeePayrollData = createEmployeePayroll();
+    createAndUpadteLocalStorage(employeePayrollData);
 }
 
-const getDeptHtml = (deptList) =>{
-    let deptHtml = '';
-    for(const dept of deptList){
-        deptHtml = `${deptHtml} <div class='dept-label'>${dept}</div>`;
+const createEmployeePayroll = () => {
+
+    let employeePayrollData = new EmployeePayrollData();
+    try {
+        employeePayrollData.name = getInputValueById('#name');
+        setTextValue('.text-error', "");
+    } catch (e) {
+        setTextValue('.text-error', e);
     }
-    return deptHtml;
+
+    try {
+        let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
+        employeePayrollData.startDate = new Date(Date.parse(date));
+        setTextValue('.date-error', "");
+    } catch (e) {
+        setTextValue('.date-error', e);
+    }
+
+    employeePayrollData.profilePic = getSelectValue('[name=profile]').pop();
+    employeePayrollData.gender = getSelectValue('[name=gender]').pop();
+    employeePayrollData.department = getSelectValue('[name=department]');
+    employeePayrollData.salary = getInputValueById('#salary');
+    employeePayrollData.notes = getInputValueById('#notes');
+    employeePayrollData.id = new Date().getTime() + 1;
+    alert(employeePayrollData.toString());
+    console.log(employeePayrollData);
+    return employeePayrollData;
+}
+
+const getInputValueById = (id) => {
+    return value = document.querySelector(id).value;
+}
+
+const setTextValue = (id, message) => {
+    const textError = document.querySelector(id);
+    textError.textContent = message;
+}
+
+const getSelectValue = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    let setItems = [];
+    allItems.forEach(item => {
+        if (item.checked == true) {
+            setItems.push(item.value);
+        }
+    });
+    return setItems;
+}
+
+//Data store in local storage
+const createAndUpadteLocalStorage = (empData) => {
+    let dataList = JSON.parse(localStorage.getItem("employeePayrollList"));
+    console.log("Data from local stroage" );
+    console.log(dataList);
+    if (dataList != null) {
+    if (dataList != undefined) {
+        dataList.push(empData);
+    } else {
+        dataList = [empData];
+    }
+    localStorage.setItem('employeePayrollList',JSON.stringify(dataList));
+    alert("Data stored with name "+empData.name);
+}
+
+/** Reset employee payroll form */
+
+const resetForm = () => {
+    setTextValue('#name', '');
+    unsetSelectedValues('[name=profile]');
+    unsetSelectedValues('[name=gender]');
+    unsetSelectedValues('[name=department]');
+    setValue('#salary','');
+    setValue('#notes','');
+    setValue('#day','1');
+    setValue('#month','January');
+    setValue('#year','2021');
+}
+
+const unsetSelectedValues =(propertyValue) =>{
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach (item =>{
+        item.checked = false;
+    });
+}
+
+const setValue = (id, value) =>{
+    const element = document.querySelector(id);
+    element.value = value;
+    }
 }
