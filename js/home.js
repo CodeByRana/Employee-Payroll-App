@@ -14,7 +14,7 @@ const createInnerHTML = () => {
     <th>Start Date</th>
     <th>Actions</th>
 </tr>`;
-let empPayrollData = createEmployeePayrollJSON()[0];
+let empPayrollData = createEmployeePayrollJSON()[3];
 console.log(empPayrollData);
     const innerHtml = `${headerHtml}
                 <tr>
@@ -24,10 +24,7 @@ console.log(empPayrollData);
                     </td>
                     <td>${empPayrollData._name}</td>
                     <td>${empPayrollData._gender}</td>
-                    <td>
-                        <div class="dept-label">${empPayrollData._department[0]}</div>
-                        <div class="dept-label">${empPayrollData._department[1]}</div>
-                    </td>
+                    <td>${getDeptHtml(empPayrollData._department)}</td>
                     <td>${empPayrollData._salary}</td>
                     <td>${empPayrollData._startDate}</td>
                     <td>
@@ -93,4 +90,12 @@ const createEmployeePayrollJSON = () => {
           }
     ];
     return empPayrollListLocal;
+}
+
+const getDeptHtml = (deptList) =>{
+    let deptHtml = '';
+    for(const dept of deptList){
+        deptHtml = `${deptHtml} <div class='dept-label'>${dept}</div>`;
+    }
+    return deptHtml;
 }
