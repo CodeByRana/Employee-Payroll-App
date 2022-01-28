@@ -88,6 +88,7 @@ const createAndUpadteLocalStorage = (empData) => {
     console.log("Data from local stroage" );
     console.log(dataList);
     if (dataList != null) {
+    if (dataList != undefined) {
         dataList.push(empData);
     } else {
         dataList = [empData];
@@ -120,4 +121,5 @@ const unsetSelectedValues =(propertyValue) =>{
 const setValue = (id, value) =>{
     const element = document.querySelector(id);
     element.value = value;
+    }
 }
